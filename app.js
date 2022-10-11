@@ -7,7 +7,7 @@ const port = process.env.PORT || 3000
 createToken()
 
 app.all('/*', function(req, res, next) {
-  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded());
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   next();
