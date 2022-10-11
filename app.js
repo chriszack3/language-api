@@ -1,12 +1,11 @@
 import express from 'express'
 import getLangResults from './lib/functions/languageLib.js'
-import dotenv from 'dotenv'
+import createToken from './lib/functions/createToken.js'
 
 const app = express()
 const port = process.env.PORT || 3000
-dotenv.config()
-console.log(process.env)
 
+createToken()
 
 app.get('/', async (req, res) => {
   getLangResults(req?.body?.text || 'Undefined on the server').then((data) => {
