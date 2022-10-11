@@ -12,7 +12,7 @@ app.post('/', urlencodedParser, async (req, res) => {
   getLangResults(req?.body?.text || 'Undefined on the server').then((data) => {
         res.send({
           headers: {
-            'Access-Control-Allow-Origin': '*',
+            "Access-Control-Allow-Origin": "localhost:8000",
           }, 
           data: data 
         })
