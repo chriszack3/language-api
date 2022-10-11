@@ -11,7 +11,7 @@ app.use(express.urlencoded({extended:false}));
 app.post('/', async (req, res) => {
   console.log(req.body);
   const result = await getLangResults(req.body.text)
-  res.status(200).json(result)
+  res.header('Access-Control-Allow-Origin', 'http://localhost:8000').status(200).json(result)
   res.end();
 });
 
