@@ -1,29 +1,23 @@
 import express from 'express'
 import getLangResults from './lib/functions/languageLib.js'
 import createToken from './lib/functions/createToken.js'
-import bodyParser from 'body-parser'
-const app = express()
-const port = process.env.PORT || 3000
+
 createToken()
 
-app.all('/*', function(req, res, next) {
-  app.use(bodyParser.urlencoded());
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  next();
+const app = express()
+const port = process.env.PORT || 3000
+
+app.use(express.urlencoded({extended:false}));
+app.post('/', async (req, res) => {
+  console.log(req.body);
+  const result = await getLangResults(req.body.text)
+  res.status(200).json(result)
+  res.end();
 });
 
-app.post('/', async (req, res) => {
-  console.log(req?.data)
-  getLangResults(req?.data?.text || 'Undefined on the server').then((data) => {
-    res.status(200).json(data)
-  }).catch((err) => {
+app.listen(port, (err) => {
+  if (err) {
     console.log(err)
-    res.send({ error: err })
-  })
-  // res.send('Hello World!')
-})
-
-app.listen(port, () => {
+  }
   console.log(`Example app listening on port ${port}`)
 })
