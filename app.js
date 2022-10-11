@@ -10,12 +10,8 @@ createToken()
 
 app.post('/', urlencodedParser, async (req, res) => {
   getLangResults(req?.body?.text || 'Undefined on the server').then((data) => {
-        res.send({
-          headers: {
-            "Access-Control-Allow-Origin": "localhost:8000",
-          }, 
-          data: data 
-        })
+        res.header("Access-Control-Allow-Origin", "localhost:8000");
+        res.status(200).json(data)
     }).catch((err) => {
         console.log(err)
         res.send({ error: err })
