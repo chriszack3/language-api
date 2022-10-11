@@ -14,7 +14,7 @@ app.all('/*', function(req, res, next) {
 });
 
 app.post('/', async (req, res) => {
-  console.log(req?.body)
+  console.log(req)
   getLangResults(req?.body?.text || 'Undefined on the server').then((data) => {
     res.status(200).json(data)
   }).catch((err) => {
