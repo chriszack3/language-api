@@ -7,7 +7,7 @@ const port = process.env.PORT || 3000
 
 createToken()
 
-app.get('/', async (req, res) => {
+app.post('/', async (req, res) => {
   getLangResults(req?.body?.text || 'Undefined on the server').then((data) => {
         res.send({ data: data })
     }).catch((err) => {
