@@ -1,13 +1,14 @@
 import express from 'express'
 import getLangResults from './lib/functions/languageLib.js'
 import createToken from './lib/functions/createToken.js'
-
+import bodyParser from 'body-parser'
 const app = express()
 const port = process.env.PORT || 3000
 
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 createToken()
 
-app.post('/', async (req, res) => {
+app.post('/', urlencodedParser, async (req, res) => {
   getLangResults(req?.body?.text || 'Undefined on the server').then((data) => {
         res.send({ data: data })
     }).catch((err) => {
