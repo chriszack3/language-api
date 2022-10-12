@@ -9,8 +9,7 @@ const port = process.env.PORT || 3000
 
 app.use(express.urlencoded({extended:false}));
 app.post('/', async (req, res) => {
-  console.log(req?.body);
-  const result = await getLangResults(JSON.parse(req?.body?.text));
+  const result = await getLangResults(req?.body?.text || 'Nothing passed to api');
   res.header('Access-Control-Allow-Origin', 'http://localhost:8000')
   res.status(200).json(result)
   res.end();
