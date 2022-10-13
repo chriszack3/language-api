@@ -11,7 +11,7 @@ app.use(express.urlencoded({extended:false}));
 app.post('/', async (req, res) => {
   const result = await getLangResults(req?.body?.text || 'Nothing passed to api');
   //allow the domain and localhost to access the api
-  res.header('Access-Control-Allow-Origin', 'http://localhost:8000')
+  res.header('Access-Control-Allow-Origin', '*')
   res.status(200).json(result)
   res.end();
 });
