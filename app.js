@@ -13,6 +13,13 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.options('*', function(req, res, next){
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.send(200);
+});
+
 app.post('/', async (req, res) => {
   const result = await getLangResults(req?.body?.text || 'Nothing passed to api');
   //allow the domain and localhost to access the api
