@@ -7,7 +7,6 @@ createToken()
 const app = express()
 const port = process.env.PORT || 3000
 
-app.use(express.urlencoded({extended:false}));
 app.post('/', async (req, res) => {
   const result = await getLangResults(req?.body?.text || 'Nothing passed to api');
   //allow the domain and localhost to access the api
