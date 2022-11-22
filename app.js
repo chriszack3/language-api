@@ -10,7 +10,7 @@ const port = process.env.PORT || 3000
 app.post('/', async (req, res) => {
   const result = await getLangResults(req?.body?.text || 'Nothing passed to api');
   //allow the domain and localhost to access the api
-  res.header('Access-Control-Allow-Origin', 'https://portfoliositemaster47439.gatsbyjs.io/')
+  res.header('Access-Control-Allow-Origin', '*')
   res.status(200).json(result)
   res.end();
 });
